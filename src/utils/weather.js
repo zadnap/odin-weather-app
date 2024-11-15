@@ -68,13 +68,13 @@ class Weather {
     };
   }
 
-  getAirQuality() {
+  getTodayAirQuality() {
     const { co, so2, no2, o3, pm10, pm1, pm2p5, aqius } =
       this.#weatherTimeline.currentConditions;
 
     return {
       mainPollutant: getMainPollutant({ co, so2, no2, o3, pm10, pm1, pm2p5 }),
-      accessment: getAirQualityAssessment(aqius),
+      assessment: getAirQualityAssessment(aqius),
     };
   }
 
