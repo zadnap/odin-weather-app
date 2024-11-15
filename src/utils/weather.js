@@ -1,3 +1,4 @@
+import { getAirQualityAssessment, getMainPollutant } from "./airQuality";
 import { formatDateToLongMonth, formatTimeTo12Hour } from "./date";
 import { computeDayPeriodTemperatures } from "./dayPeriodTemperature";
 import { getUVLevel } from "./uvIndex";
@@ -14,7 +15,7 @@ class Weather {
   }
 
   async #fetchWeatherTimeline(location) {
-    const url = `${Weather.BASE_URL}/timeline/${location}?unitGroup=metric&key=${Weather.API_KEY}`;
+    const url = `${Weather.BASE_URL}/timeline/${location}?unitGroup=metric&elements=%2Baqius,%2Bpm2p5,%2Bpm1,%2Bpm10,%2Bo3,%2Bno2,%2Bso2,%2Bco&key=${Weather.API_KEY}`;
 
     try {
       const response = await fetch(url);
@@ -64,6 +65,16 @@ class Weather {
     return {
       sunrise: formatTimeTo12Hour(sunrise),
       sunset: formatTimeTo12Hour(sunset),
+    };
+  }
+
+  getAirQuality() {
+    const { co, so2, no2, o3, pm10, pm1, pm2p5, aqius } =
+      this.#weatherTimeline.currentConditions;
+
+    return {
+      mainPollutant: getMainPollutant({ co, so2, no2, o3, pm10, pm1, pm2p5 }),
+      accessment: getAirQualityAssessment(aqius),
     };
   }
 
