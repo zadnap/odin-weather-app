@@ -1,3 +1,19 @@
+:root {
+  --font-size: 16px;
 
+  --background-color: #ffffff;
+  --sub-background-color: #f7f7f7;
+  --heading-text-color: #19283f;
+  --body-text-color: #000000;
+  --body-text-color-dark: #ffffff;
+  --sub-text-color: #6a7082;
+  --border-color: #e1e4e9;
+  --orange: #f97f29;
+  --safe-color: #2ecc71;
+  --moderate-color: #cce16a;
+  --danger-color: #e74c3c;
 
-/*# sourceMappingURL=variables.css.map */
+  --border-radius: 15px;
+  --block-padding: 20px;
+  --flex-gap: 15px;
+}
