@@ -1,0 +1,198 @@
+.sidebar {
+  padding: var(--section-padding);
+  background-color: var(--sub-background-color);
+  overflow-y: auto;
+}
+
+.sidebar .weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--border-color) solid 1px;
+  padding: calc(var(--section-padding) / 2) 0;
+}
+.sidebar .weather-header h3 {
+  font-weight: 500;
+}
+.sidebar .weather-header h2 {
+  color: var(--orange);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.sidebar .sun-transition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--section-padding) 0;
+}
+.sun-transition .sun-path {
+  width: 100%;
+}
+.sun-transition .sun {
+  position: relative;
+  margin: 10px 17px;
+  color: var(--orange);
+}
+.sun-transition .sun i {
+  z-index: 1;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.sun-transition .sun i::after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -18px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--orange);
+  border-radius: 50%;
+}
+.sun-transition .progress-bar {
+  top: -1px;
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: var(--orange);
+}
+.sun-transition .progress-bar::before,
+.sun-transition .progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: var(--orange);
+  border-radius: 50%;
+}
+.sun-transition .progress-bar::before {
+  left: 20px;
+}
+.sun-transition .progress-bar::after {
+  right: 20px;
+  background-color: var(--heading-text-color);
+}
+.sun-transition .time-labels {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+.sunset,
+.sunrise {
+  text-align: center;
+}
+.sunset p,
+.sunrise p {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.sunset span,
+.sunrise span {
+  font-size: 0.8rem;
+  color: var(--sub-text-color);
+}
+
+.sidebar .uv-index {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--body-text-color-dark);
+  padding: var(--section-padding);
+  border-radius: var(--border-radius);
+  background-color: var(--heading-text-color);
+}
+.uv-index .icon {
+  font-size: 1.5rem;
+  color: var(--orange);
+}
+.uv-index .content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.uv-index h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.uv-index h3 span {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: var(--border-radius);
+  color: var(--body-text-color);
+}
+.uv-index .content p {
+  font-size: 0.9rem;
+}
+.uv-index h3 span.safe {
+  background-color: var(--safe-color);
+}
+.uv-index h3 span.moderate {
+  background-color: var(--moderate-color);
+}
+.uv-index h3 span.danger {
+  background-color: var(--danger-color);
+}
+
+.sidebar .weather-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--section-padding) 0;
+}
+.weather-forecast h1 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--heading-text-color);
+}
+.weather-forecast ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.weather-forecast .icon {
+  font-size: 1.5rem;
+}
+.weather-forecast .day-forecast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--section-padding);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+}
+.weather-forecast .day-forecast .date {
+  color: var(--sub-text-color);
+  font-size: 0.9rem;
+}
+.weather-forecast .day-forecast .condition {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.weather-forecast .day-forecast .temp {
+  align-self: self-end;
+  color: var(--orange);
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+.weather-forecast .more-forecast {
+  align-self: self-end;
+  cursor: pointer;
+  background-color: var(--orange);
+  color: var(--body-text-color-dark);
+  border-radius: var(--border-radius);
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
