@@ -1,4 +1,277 @@
 .dashboard {
   flex: 1;
   padding: var(--section-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dashboard header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard header .say-hello {
+  margin-right: auto;
+  font-weight: 400;
+  color: var(--heading-text-color);
+  font-size: 1.2rem;
+}
+.dashboard header .location-search {
+  font-size: 0.8rem;
+  background-color: var(--sub-background-color);
+  padding: 7px 14px;
+  border-radius: var(--border-radius);
+}
+.dashboard header .location-search i {
+  color: var(--orange);
+  margin-left: 10px;
+}
+.dashboard header .toggle-appearance {
+  cursor: pointer;
+  border-radius: 50%;
+  border: var(--border-color) solid 1px;
+  height: 38px;
+  width: 38px;
+  color: #5f6187;
+}
+.dashboard header .toggle-appearance i:nth-child(2) {
+  display: none;
+}
+
+.dashboard-body {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+}
+
+.dashboard-body .today-conditions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 25px;
+  background-color: var(--sub-background-color);
+  padding: var(--section-padding);
+  border-radius: var(--border-radius);
+}
+.today-conditions .head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.today-conditions .head h3 {
+  font-weight: 400;
+  color: var(--heading-text-color);
+}
+.today-conditions .head p {
+  font-size: 0.8rem;
+}
+.today-conditions .head .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--orange);
+  background-color: var(--background-color);
+}
+.today-conditions .main-content h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--heading-text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.today-conditions .main-content span {
+  font-size: 0.7rem;
+  background-color: var(--background-color);
+  color: var(--body-text-color);
+  padding: 7px 10px;
+  border-radius: var(--border-radius);
+}
+.today-conditions .sub-content {
+  display: flex;
+  gap: 10px;
+}
+.today-conditions .sub-content div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: var(--border-radius);
+}
+
+.weather {
+  grid-column: 1 / 4;
+  background-image: url(../images/clear-sky.jpg);
+  background-size: cover;
+}
+.weather .sub-content .pressure {
+  background-color: var(--heading-text-color);
+  color: var(--body-text-color-dark);
+}
+.weather .sub-content .visibility {
+  background-color: var(--moderate-color);
+  color: var(--body-text-color);
+}
+.weather .sub-content .humidity {
+  background-color: var(--background-color);
+  color: var(--body-text-color);
+}
+.weather .sub-content div p {
+  font-size: 0.8rem;
+}
+.weather .sub-content strong {
+  font-weight: 500;
+}
+
+.air-quality {
+  grid-column: 4 / -1;
+  background-image: url(../images/windy.jpg);
+  background-size: cover;
+}
+.air-quality .air-assessment {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  padding: 7px 14px;
+  color: var(--heading-text-color);
+}
+.air-quality .main-content .aqi {
+  background-color: var(--moderate-color);
+}
+.air-quality .air-assessment .level {
+  padding: 0 0 3px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.air-assessment .air-progress {
+  position: relative;
+}
+.air-assessment progress {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background-color: var(--sub-background-color);
+  border-radius: var(--border-radius);
+}
+progress::-webkit-progress-bar {
+  background-color: var(--sub-background-color);
+  border-radius: var(--border-radius);
+}
+progress::-webkit-progress-value {
+  background-color: var(--orange);
+  border-radius: var(--border-radius);
+  transition: width 0.3s ease;
+}
+progress::-moz-progress-bar {
+  background-color: var(--orange);
+  border-radius: var(--border-radius);
+}
+.air-assessment .air-progress .tooltip {
+  position: absolute;
+  display: block;
+  top: -40px;
+  background-color: var(--heading-text-color);
+  color: var(--body-text-color-dark);
+  padding: 5px 12px;
+  font-size: 0.8rem;
+}
+.air-assessment .air-progress .tooltip:after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid var(--heading-text-color);
+  border-bottom: none;
+}
+
+.day-period {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  grid-column: 1 / 5;
+  border-radius: var(--border-radius);
+  padding: var(--section-padding);
+}
+.day-period h1 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--heading-text-color);
+  margin-bottom: auto;
+}
+.day-period ul {
+  display: flex;
+  justify-content: space-around;
+}
+.day-period .period-forecast {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 20px 0;
+}
+.day-period .period-forecast:not(:last-child) {
+  border-right: var(--border-color) solid 1px;
+}
+.day-period .period-forecast .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-color) solid 1px;
+  color: var(--sub-text-color);
+  margin-bottom: 15px;
+}
+.day-period .period-forecast.now .icon {
+  background-color: var(--heading-text-color);
+  color: var(--orange);
+  border-color: transparent;
+}
+.day-period .period-forecast h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.day-period .period-forecast p {
+  color: var(--sub-text-color);
+  font-size: 0.9rem;
+}
+
+.tomorrow {
+  grid-column: 5 / -1;
+  border-radius: var(--border-radius);
+  padding: var(--section-padding);
+  color: var(--body-text-color-dark);
+  background-color: var(--heading-text-color);
+  display: flex;
+  flex-direction: column;
+}
+.tomorrow h3 {
+  font-size: 0.9rem;
+  margin-bottom: auto;
+}
+.tomorrow h1 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.tomorrow p {
+  font-size: 0.9rem;
 }
