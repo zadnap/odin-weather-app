@@ -7,11 +7,11 @@ import { handleSearch } from "./controllers/appController";
 import { locationInformation } from "./utils/storage";
 import { renderUI } from "./controllers/domController";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   if (locationInformation.get()) {
-    handleSearch(locationInformation.get().address);
+    await handleSearch(locationInformation.get().address);
   } else {
-    handleSearch();
+    await handleSearch("hanoi");
   }
 
   renderUI();
