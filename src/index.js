@@ -10,6 +10,8 @@ import { renderUI } from "./controllers/domController";
 document.addEventListener("DOMContentLoaded", () => {
   if (locationInformation.get()) {
     handleSearch(locationInformation.get().address);
+  } else {
+    handleSearch();
   }
 
   renderUI();
