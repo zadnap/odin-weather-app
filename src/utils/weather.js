@@ -1,6 +1,7 @@
 import { getAirQualityAssessment, getMainPollutant } from "./airQuality";
 import { formatDateToLongMonth, formatTimeTo12Hour } from "./date";
 import { computeDayPeriodTemperatures } from "./dayPeriodTemperature";
+import { degreeToDirection } from "./direction";
 import { getUVLevel } from "./uvIndex";
 
 class Weather {
@@ -69,10 +70,12 @@ class Weather {
   }
 
   getTodayAirQuality() {
-    const { co, so2, no2, o3, pm10, pm1, pm2p5, aqius } =
+    const { co, so2, no2, o3, pm10, pm1, pm2p5, aqius, winddir } =
       this.#weatherTimeline.currentConditions;
 
     return {
+      aqius,
+      windDirection: degreeToDirection(winddir),
       mainPollutant: getMainPollutant({ co, so2, no2, o3, pm10, pm1, pm2p5 }),
       assessment: getAirQualityAssessment(aqius),
     };
@@ -82,8 +85,8 @@ class Weather {
     const { uvindex } = this.#weatherTimeline.currentConditions;
 
     return {
-      uvindex: uvindex,
-      uvlevel: getUVLevel(uvindex),
+      index: uvindex,
+      level: getUVLevel(uvindex),
     };
   }
 
@@ -95,15 +98,15 @@ class Weather {
     return computeDayPeriodTemperatures(todayHourlyTemperature);
   }
 
-  getForecast(dayRange = 2) {
+  getForecast(dayRange = 3) {
     const { days } = this.#weatherTimeline;
     const processedDays = days.map((day) => {
       return {
         icon: day.icon,
         date: formatDateToLongMonth(day.datetime),
         status: day.conditions,
-        maxTemp: day.tempmax,
-        minTemp: day.tempmin,
+        maxTemp: Math.round(day.tempmax),
+        minTemp: Math.round(day.tempmin),
       };
     });
 

@@ -1,6 +1,22 @@
 import "../assets/css/dashboard.css";
+import {
+  airQuality,
+  forecast,
+  locationInformation,
+  periodTemperature,
+  todayConditions,
+} from "../utils/storage";
+import { getTimeOfDay } from "../utils/time";
+import { handleSearch } from "../controllers/appController";
 
 function createDashboard() {
+  const { address } = locationInformation.get();
+  const { temp, status, pressure, visibility, humidity } =
+    todayConditions.get();
+  const { mainPollutant, aqius, assessment, windDirection } = airQuality.get();
+  const { morning, afternoon, evening, night } = periodTemperature.get();
+  const tomorrowForecast = forecast.get()[0];
+
   const dashboard = document.createElement("section");
   dashboard.className = "dashboard";
 
@@ -10,7 +26,13 @@ function createDashboard() {
         <h1>Hello, <span>User</span></h1>
       </div>
       <form class="location-search">
-        <input type="text" placeholder="Search anything ..." spellcheck="false" autocomplete="off">
+        <input 
+          type="text" 
+          placeholder="Search anything ..." 
+          spellcheck="false" 
+          autocomplete="off"
+          value="${address}"
+        >
         <i class="fa-solid fa-magnifying-glass"></i>
       </form>
       <button class="toggle-appearance">
@@ -31,21 +53,21 @@ function createDashboard() {
           </div>
         </div>
         <div class="main-content">
-          <h3>22°C <span>11°C</span></h3>
-          <p>Partly Cloudy</p>
+          <h3>${temp}°C</h3>
+          <p>${status}</p>
         </div>
         <div class="sub-content">
           <div class="pressure">
             <p>Pressure</p>
-            <strong>800mb</strong>
+            <strong>${pressure} mb</strong>
           </div>
           <div class="visibility">
             <p>Visibility</p>
-            <strong>4.3 km</strong>
+            <strong>${visibility} km</strong>
           </div>
           <div class="humidity">
             <p>Humidity</p>
-            <strong>87%</strong>
+            <strong>${humidity}%</strong>
           </div>
         </div>
       </div>
@@ -54,12 +76,12 @@ function createDashboard() {
           <div class="icon"><i class="fa-solid fa-wind"></i></div>
           <div>
             <h3>Air Quality</h3>
-            <p>Main Pollutant: PM 2.5</p>
+            <p>Main Pollutant: ${mainPollutant}</p>
           </div>
         </div>
         <div class="main-content">
-          <h3>390 <span class="aqi">AQI</span></h3>
-          <p>West Wind</p>
+          <h3>${aqius} <span class="aqi">AQI</span></h3>
+          <p>${windDirection} Wind</p>
         </div>
         <div class="sub-content air-assessment">
           <div class="level">
@@ -67,45 +89,55 @@ function createDashboard() {
             <p>Hazardous</p>
           </div>
           <div class="air-progress">
-            <progress value="30" max="100"></progress>
-            <div class="tooltip">Standard</div>
+            <progress value="${assessment.level}" max="50"></progress>
+            <div class="tooltip">${assessment.status}</div>
           </div>
         </div>
       </div>
       <div class="day-period">
         <h1>How's the temperature today?</h1>
         <ul>
-          <li class="period-forecast">
+          <li class="period-forecast ${getTimeOfDay() === "morning" ? "now" : ""}">
             <div class="icon"><i class="fa-solid fa-sun"></i></div>
-            <h3>20°C</h3>
+            <h3>${morning}°C</h3>
             <p>Morning</p>
           </li>
-          <li class="period-forecast">
+          <li class="period-forecast ${getTimeOfDay() === "afternoon" ? "now" : ""}">
             <div class="icon"><i class="fa-solid fa-sun"></i></div>
-            <h3>20°C</h3>
+            <h3>${afternoon}°C</h3>
             <p>Afternoon</p>
           </li>
-          <li class="period-forecast now">
+          <li class="period-forecast ${getTimeOfDay() === "evening" ? "now" : ""}">
             <div class="icon"><i class="fa-solid fa-sun"></i></div>
-            <h3>20°C</h3>
+            <h3>${evening}°C</h3>
             <p>Evening</p>
           </li>
-          <li class="period-forecast">
+          <li class="period-forecast ${getTimeOfDay() === "night" ? "now" : ""}">
             <div class="icon"><i class="fa-solid fa-sun"></i></div>
-            <h3>20°C</h3>
+            <h3>${night}°C</h3>
             <p>Night</p>
           </li>
         </ul>
       </div>
       <div class="tomorrow">
         <h3>Tomorrow</h3>
-        <h1>20°C</h1>
-        <p>Rainny</p>
+        <h1>${Math.floor((tomorrowForecast.maxTemp + tomorrowForecast.minTemp) / 2)}°C</h1>
+        <p>${tomorrowForecast.status}</p>
       </div>
     </section>
   `;
 
   dashboard.innerHTML = header + dashboardBody;
+
+  const locationSearchForm = dashboard.querySelector(".location-search");
+  const locationSearchInput = dashboard.querySelector(".location-search input");
+  locationSearchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (locationSearchInput.value) {
+      handleSearch(locationSearchInput.value);
+    }
+  });
 
   return dashboard;
 }

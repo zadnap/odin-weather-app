@@ -16,12 +16,13 @@ function getMainPollutant(pollutants) {
 }
 
 function getAirQualityAssessment(aqi) {
-  if (aqi <= 50) return "Good";
-  if (aqi <= 100) return "Moderate";
-  if (aqi <= 150) return "Unhealthy for Sensitive Groups";
-  if (aqi <= 200) return "Unhealthy";
-  if (aqi <= 300) return "Very Unhealthy";
-  return "Hazardous";
+  if (aqi <= 50) return { level: 1, status: "Good" };
+  if (aqi <= 100) return { level: 2, status: "Moderate" };
+  if (aqi <= 150)
+    return { level: 20, status: "Unhealthy for Sensitive Groups" };
+  if (aqi <= 200) return { level: 3, status: "Unhealthy" };
+  if (aqi <= 300) return { level: 4, status: "Very Unhealthy" };
+  return { level: 5, status: "Hazardous" };
 }
 
 export { getMainPollutant, getAirQualityAssessment };

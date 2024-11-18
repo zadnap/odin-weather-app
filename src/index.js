@@ -5,18 +5,12 @@ import "./assets/css/main.css";
 
 import { handleSearch } from "./controllers/appController";
 import { locationInformation } from "./utils/storage";
-import createSidebar from "./components/sidebar";
-import createDashboard from "./components/dashboard";
+import { renderUI } from "./controllers/domController";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (locationInformation.get()) {
     handleSearch(locationInformation.get().address);
   }
 
-  const app = document.querySelector("#app");
-  const dashboard = createDashboard();
-  const sidebar = createSidebar();
-
-  app.appendChild(dashboard);
-  app.appendChild(sidebar);
+  renderUI();
 });
