@@ -39,15 +39,14 @@
 .sun-transition .sun i {
   z-index: 1;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  transition: all ease 0.3s;
 }
 .sun-transition .sun i::after {
   position: absolute;
   content: "";
   left: 50%;
   transform: translateX(-50%);
-  bottom: -18px;
+  bottom: -19px;
   width: 10px;
   height: 10px;
   background-color: var(--orange);
@@ -161,6 +160,7 @@
 }
 .weather-forecast .icon {
   font-size: 1.5rem;
+  width: 30px;
 }
 .weather-forecast .day-forecast {
   display: flex;
@@ -184,17 +184,4 @@
   font-weight: 400;
   font-size: 0.9rem;
   margin-left: auto;
-}
-.weather-forecast .more-forecast {
-  align-self: self-end;
-  cursor: pointer;
-  background-color: var(--orange);
-  color: var(--body-text-color-dark);
-  border-radius: var(--border-radius);
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.8rem;
-  font-weight: 400;
 }

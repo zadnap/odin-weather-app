@@ -1,6 +1,6 @@
 import { getAirQualityAssessment, getMainPollutant } from "./airQuality";
 import { formatDateToLongMonth, formatTimeTo12Hour } from "./date";
-import { computeDayPeriodTemperatures } from "./dayPeriodTemperature";
+import { analyzePeriodWeather } from "./dayPeriod";
 import { degreeToDirection } from "./direction";
 import { getUVLevel } from "./uvIndex";
 
@@ -92,13 +92,15 @@ class Weather {
 
   getTodayPeriodTemperatures() {
     const todayHourlyTemperature = this.#weatherTimeline.days[0].hours.map(
-      (hour) => hour.temp,
+      (hour) => {
+        return { temp: hour.temp, icon: hour.icon };
+      },
     );
 
-    return computeDayPeriodTemperatures(todayHourlyTemperature);
+    return analyzePeriodWeather(todayHourlyTemperature);
   }
 
-  getForecast(dayRange = 3) {
+  getForecast() {
     const { days } = this.#weatherTimeline;
     const processedDays = days.map((day) => {
       return {
@@ -110,7 +112,7 @@ class Weather {
       };
     });
 
-    return processedDays.slice(1, dayRange);
+    return processedDays.slice(1, processedDays.length);
   }
 }
 

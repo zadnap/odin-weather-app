@@ -268,6 +268,11 @@ progress::-moz-progress-bar {
   font-size: 0.9rem;
   margin-bottom: auto;
 }
+.tomorrow .icon {
+  font-size: 4rem;
+  align-self: center;
+  margin: auto 0;
+}
 .tomorrow h1 {
   font-size: 2rem;
   font-weight: 400;

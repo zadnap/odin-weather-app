@@ -7,6 +7,8 @@ import {
   uvIndex,
   forecast,
 } from "../utils/storage.js";
+import { getFontAwesomeIcon } from "../utils/icon.js";
+import { calculateDayProgress } from "../utils/time.js";
 
 function createSidebar() {
   const { address } = locationInformation.get();
@@ -14,6 +16,8 @@ function createSidebar() {
   const { sunrise, sunset } = sunTransition.get();
   const { index, level } = uvIndex.get();
   const forecastList = forecast.get();
+
+  const dayProgress = calculateDayProgress(sunrise, sunset);
 
   const sidebar = document.createElement("aside");
   sidebar.className = "sidebar";
@@ -31,16 +35,21 @@ function createSidebar() {
   const sunTransitionHTML = `
     <div class="sun-transition">    
         <div class="sun-path">
-            <div class="sun"><i class="fa-solid fa-sun"></i></div>
+            <div class="sun">
+              <i 
+                class="fa-solid fa-sun" 
+                style="left: ${dayProgress}%; transform: translateX(-${dayProgress}%);"
+              ></i>
+            </div>
             <div class="progress-bar"></div>
         </div>
         <div class="time-labels">
             <div class="sunset">
-                <p>Sunset</p>
+                <p>Sunrise</p>
                 <span>${sunrise}</span>
             </div>
             <div class="sunrise">
-                <p>Sunrise</p>
+                <p>Sunset</p>
                 <span>${sunset}</span>
             </div>
         </div>
@@ -65,7 +74,7 @@ function createSidebar() {
               .map((forecast) => {
                 return `
                     <li class="day-forecast">
-                        <div class="icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                        <div class="icon"><i class="fa-solid ${getFontAwesomeIcon(forecast.icon)}"></i></div>
                         <div>
                             <p class="date">${forecast.date}</p>
                             <p class="condition">${forecast.status}</p>
@@ -78,10 +87,6 @@ function createSidebar() {
               })
               .join("")}
         </ul>
-        <button class="more-forecast">
-            <i class="fa-regular fa-calendar"></i>
-            <span>Next 5 Days</span>
-        </button>
     </div>
   `;
 
