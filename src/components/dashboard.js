@@ -36,10 +36,6 @@ function createDashboard() {
         >
         <i class="fa-solid fa-magnifying-glass"></i>
       </form>
-      <button class="toggle-appearance">
-        <i class="fa-solid fa-sun"></i>
-        <i class="fa-solid fa-moon"></i>
-      </button>
     </header>
   `;
 

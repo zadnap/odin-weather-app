@@ -35,9 +35,6 @@
   width: 38px;
   color: #5f6187;
 }
-.dashboard header .toggle-appearance i:nth-child(2) {
-  display: none;
-}
 
 .dashboard-body {
   display: grid;
