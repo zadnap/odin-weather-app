@@ -1,30 +1,20 @@
-### Purpose
+# Odin Weather App
 
-- This repository is created for the sake of fast initialization of custom projects including webpack libraries and plugins.
+- This app represents a simple weather app which provides weather today's condition and forecast
 
-### Folders
+## Preview
 
-- Your code is suppose to be written inside ./src
-- index.js is the entry point of scripts of the app
-- template.html is the html template where you can append HTML to it using javascript. Content appended will be found in #content div
-- In ./src, there are assets, components (UI components), modules (controllers - handle all the logic) and utils
+- This is the preview screenshot when user first visit the app
 
-### Script
+![preview screenshot](./src/assets/images/preview.png)
 
-- To run in dev mode
+## Features
 
-```bash
-npm start
-```
+- User is able to search for location
+- When they search for a valid location, render today's condition, sunrise and sunset time, day session temperatures, and forecast for tomorrow and the next 15 days.
+- When they search for an invalid location, render a modal to inform them and ask them to search again.
 
-- To build product
+## API
 
-```bash
-npm run build
-```
-
-- To deploy project on github page
-
-```bash
-npm run deploy
-```
+- This app takes data from
+  [visual Crossing API](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
