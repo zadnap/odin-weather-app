@@ -11,13 +11,13 @@ import { getFontAwesomeIcon } from "../utils/icon.js";
 import { calculateDayProgress } from "../utils/time.js";
 
 function createSidebar() {
-  const { address } = locationInformation.get();
+  const { address, now } = locationInformation.get();
   const { temp, status } = todayConditions.get();
   const { sunrise, sunset } = sunTransition.get();
   const { index, level } = uvIndex.get();
   const forecastList = forecast.get();
 
-  const dayProgress = calculateDayProgress(sunrise, sunset);
+  const dayProgress = calculateDayProgress(sunrise, sunset, now);
 
   const sidebar = document.createElement("aside");
   sidebar.className = "sidebar";

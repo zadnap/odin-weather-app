@@ -104,8 +104,6 @@
 
 .weather {
   grid-column: 1 / 4;
-  background-image: url(../images/clear-sky.jpg);
-  background-size: cover;
 }
 .weather .sub-content .pressure {
   background-color: var(--heading-text-color);
@@ -128,8 +126,6 @@
 
 .air-quality {
   grid-column: 4 / -1;
-  background-image: url(../images/windy.jpg);
-  background-size: cover;
 }
 .air-quality .air-assessment {
   display: flex;

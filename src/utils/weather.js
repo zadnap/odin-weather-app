@@ -3,6 +3,7 @@ import { formatDateToLongMonth, formatTimeTo12Hour } from "./date";
 import { analyzePeriodWeather } from "./dayPeriod";
 import { degreeToDirection } from "./direction";
 import { getUVLevel } from "./uvIndex";
+import { getCurrentDateInTimezone } from "./time";
 
 class Weather {
   static BASE_URL =
@@ -37,7 +38,12 @@ class Weather {
   }
 
   getLocationInformation() {
-    return { address: this.#weatherTimeline.resolvedAddress };
+    const { resolvedAddress, timezone } = this.#weatherTimeline;
+
+    return {
+      address: resolvedAddress,
+      now: new Date(getCurrentDateInTimezone(timezone)),
+    };
   }
 
   getTodayConditions() {

@@ -11,7 +11,7 @@ import { handleSearch } from "../controllers/appController";
 import { getFontAwesomeIcon } from "../utils/icon";
 
 function createDashboard() {
-  const { address } = locationInformation.get();
+  const { address, now } = locationInformation.get();
   const { temp, status, pressure, visibility, humidity, icon } =
     todayConditions.get();
   const { mainPollutant, aqius, assessment, windDirection } = airQuality.get();
@@ -94,22 +94,22 @@ function createDashboard() {
       <div class="day-period">
         <h1>How's the temperature today?</h1>
         <ul>
-          <li class="period-forecast ${getTimeOfDay() === "morning" ? "now" : ""}">
+          <li class="period-forecast ${getTimeOfDay(now) === "morning" ? "now" : ""}">
             <div class="icon"><i class="fa-solid ${getFontAwesomeIcon(morning.icon)}"></i></div>
             <h3>${morning.temp}°C</h3>
             <p>Morning</p>
           </li>
-          <li class="period-forecast ${getTimeOfDay() === "afternoon" ? "now" : ""}">
+          <li class="period-forecast ${getTimeOfDay(now) === "afternoon" ? "now" : ""}">
             <div class="icon"><i class="fa-solid ${getFontAwesomeIcon(afternoon.icon)}"></i></div>
             <h3>${afternoon.temp}°C</h3>
             <p>Afternoon</p>
           </li>
-          <li class="period-forecast ${getTimeOfDay() === "evening" ? "now" : ""}">
+          <li class="period-forecast ${getTimeOfDay(now) === "evening" ? "now" : ""}">
             <div class="icon"><i class="fa-solid ${getFontAwesomeIcon(evening.icon)}"></i></div>
             <h3>${evening.temp}°C</h3>
             <p>Evening</p>
           </li>
-          <li class="period-forecast ${getTimeOfDay() === "night" ? "now" : ""}">
+          <li class="period-forecast ${getTimeOfDay(now) === "night" ? "now" : ""}">
             <div class="icon"><i class="fa-solid ${getFontAwesomeIcon(night.icon)}"></i></div>
             <h3>${night.temp}°C</h3>
             <p>Night</p>
