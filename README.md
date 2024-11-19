@@ -17,4 +17,4 @@
 ## API
 
 - This app takes data from
-  [visual Crossing API](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
+  [Visual Crossing API](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/)
