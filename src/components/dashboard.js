@@ -9,6 +9,7 @@ import {
 import { getTimeOfDay } from "../utils/time";
 import { handleSearch } from "../controllers/appController";
 import { getFontAwesomeIcon } from "../utils/icon";
+import { getLevelColor } from "../utils/levelColor";
 
 function createDashboard() {
   const { address, now } = locationInformation.get();
@@ -86,7 +87,7 @@ function createDashboard() {
             <p>Hazardous</p>
           </div>
           <div class="air-progress">
-            <progress value="${assessment.level}" max="5"></progress>
+            <progress value="${assessment.level}" max="5" class="${getLevelColor(assessment.level, 5)}"></progress>
             <div class="tooltip">${assessment.status}</div>
           </div>
         </div>

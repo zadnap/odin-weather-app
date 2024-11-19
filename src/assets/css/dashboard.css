@@ -157,14 +157,22 @@
   background-color: var(--sub-background-color);
   border-radius: var(--border-radius);
 }
+progress::-webkit-progress-value {
+  border-radius: var(--border-radius);
+  transition: width 0.3s ease;
+}
+.air-assessment progress.safe::-webkit-progress-value {
+  background-color: var(--safe-color);
+}
+.air-assessment progress.moderate::-webkit-progress-value {
+  background-color: var(--moderate-color);
+}
+.air-assessment progress.danger::-webkit-progress-value {
+  background-color: var(--danger-color);
+}
 progress::-webkit-progress-bar {
   background-color: var(--sub-background-color);
   border-radius: var(--border-radius);
-}
-progress::-webkit-progress-value {
-  background-color: var(--orange);
-  border-radius: var(--border-radius);
-  transition: width 0.3s ease;
 }
 progress::-moz-progress-bar {
   background-color: var(--orange);
