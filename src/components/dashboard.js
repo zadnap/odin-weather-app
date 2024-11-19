@@ -86,7 +86,7 @@ function createDashboard() {
             <p>Hazardous</p>
           </div>
           <div class="air-progress">
-            <progress value="${assessment.level}" max="50"></progress>
+            <progress value="${assessment.level}" max="5"></progress>
             <div class="tooltip">${assessment.status}</div>
           </div>
         </div>
